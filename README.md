@@ -9,7 +9,7 @@ Initially, the dataset contains photos taken in 2018 and it will grow with photo
 ## Data formats 
 
 High resolution images are provided in tiff format. 
-Metadata will be provided in json format in a schema similar to the example found in [doc/examples/20May2018 Camera2-3817.json](doc/examples/20May2018 Camera2-3817.json). 
+Metadata will be provided in json format in a schema similar to the example found in [doc/examples/20May2018 Camera2-3817.json](doc/examples/20May2018%20Camera2-3817.json). 
 Low resolution, png, thumbnails will also be provided. 
 Metadata schema may change but the documentation in this repository will reflect those changes. Metadata information includes data about birds species' colonies location.
 Each dataset will also contain an static site using the metadata and the thumbnails.  
