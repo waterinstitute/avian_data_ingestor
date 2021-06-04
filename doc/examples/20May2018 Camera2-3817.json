@@ -1,85 +1,132 @@
 {
-	"name": "20May2018 Camera2-3817.jpg",
-	"thumbnail": "20May2018 Camera2-3817.png",
-	"exif": {
-		"ImageWidth": 199,
-		"ImageLength": 47,
-		"BitsPerSample": [8, 8, 8, 8],
-		"Compression": 5,
-		"PhotometricInterpretation": 2,
-		"Model": "b'Canon EOS D2000\\xc2\\xa0aka Kodak DCS520'",
-		"Orientation": 1,
-		"SamplesPerPixel": 4,
-		"RowsPerStrip": 47,
-		"XResolution": [72, 1],
-		"YResolution": [72, 1],
-		"PlanarConfiguration": 1,
-		"ResolutionUnit": 2,
-		"Software": "b'Mac OS X 10.5.8 (9L31a)'",
-		"DateTime": "b'2012:01:09 22:52:11'",
-		"Artist": "b'Jean Cornillon'",
-		"Predictor": 2,
-		"ExtraSamples": 1,
-		"SampleFormat": [1, 1, 1, 1],
-		"ExifOffset": 4808,
-		"GPSInfo": 4882,
-		"ExifVersion": "b'0231'",
-		"DateTimeDigitized": "b'2021:05:20 14:36:18'",
-		"ComponentsConfiguration": "b'\\x01\\x02\\x03\\x00'",
-		"FlashPixVersion": "b'0100'",
-		"GPSLatitudeRef": "b'N'",
-		"GPSLatitude": 43.56944681061807,
-		"GPSLongitudeRef": "b'E'",
-		"GPSLongitude": 13.17535400390625
-	},
-	"CameraNumber": "2",
-	"PhotoNumber": 3817,
-	"Date": "2018-05-20 00:00:00",
-	"species_colonies": [{
-		"SpeciesCode": "LAGU",
-		"SpeciesName": "Laughing Gull",
-		"Date": "2018-05-20 00:00:00",
-		"ColonyID": "Breton Island",
-		"Latitude": "29.4955",
-		"Longitude": "-89.1742"
-	}, {
-		"SpeciesCode": "LAGU",
-		"SpeciesName": "Laughing Gull",
-		"Date": "2018-05-20 00:00:00",
-		"ColonyID": "Breton Island",
-		"Latitude": "29.4955",
-		"Longitude": "-89.1742"
-	}, {
-		"SpeciesCode": "BRPE",
-		"SpeciesName": "Brown Pelican",
-		"Date": "2018-05-20 00:00:00",
-		"ColonyID": "Breton Island",
-		"Latitude": "29.4955",
-		"Longitude": "-89.1742"
-	}, {
-		"SpeciesCode": "BRPE",
-		"SpeciesName": "Brown Pelican",
-		"Date": "2018-05-20 00:00:00",
-		"ColonyID": "Breton Island",
-		"Latitude": "29.4955",
-		"Longitude": "-89.1742"
-	}, {
-		"SpeciesCode": "ROYT",
-		"SpeciesName": "Royal Tern",
-		"Date": "2018-05-20 00:00:00",
-		"ColonyID": "Breton Island",
-		"Latitude": "29.4955",
-		"Longitude": "-89.1742"
-	}, {
-		"SpeciesCode": "ROYT",
-		"SpeciesName": "Royal Tern",
-		"Date": "2018-05-20 00:00:00",
-		"ColonyID": "Breton Island",
-		"Latitude": "29.4955",
-		"Longitude": "-89.1742"
-	}],
-	"longitude": -89.177635,
-	"latitude": 29.495005,
-	"altitude": 0.0,
-	"location_from": "kml_point"
+  "name": "20May2018 Camera2-3817.tiff",
+  "thumbnail": "20May2018 Camera2-3817.png",
+  "exif": {
+    "ImageWidth": 199,
+    "ImageLength": 47,
+    "BitsPerSample": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "Compression": 5,
+    "PhotometricInterpretation": 2,
+    "Model": "b'Canon EOS D2000\\xc2\\xa0aka Kodak DCS520'",
+    "Orientation": 1,
+    "SamplesPerPixel": 4,
+    "RowsPerStrip": 47,
+    "XResolution": [
+      72,
+      1
+    ],
+    "YResolution": [
+      72,
+      1
+    ],
+    "PlanarConfiguration": 1,
+    "ResolutionUnit": 2,
+    "Software": "b'Mac OS X 10.5.8 (9L31a)'",
+    "DateTime": "b'2012:01:09 22:52:11'",
+    "Artist": "b'Jean Cornillon'",
+    "Predictor": 2,
+    "ExtraSamples": 1,
+    "SampleFormat": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "ExifOffset": 4808,
+    "GPSInfo": 4882,
+    "ExifVersion": "b'0231'",
+    "DateTimeDigitized": "b'2021:05:20 14:36:18'",
+    "ComponentsConfiguration": "b'\\x01\\x02\\x03\\x00'",
+    "FlashPixVersion": "b'0100'",
+    "GPSLatitudeRef": "b'N'",
+    "GPSLatitude": 43.56944681061807,
+    "GPSLongitudeRef": "b'E'",
+    "GPSLongitude": 13.17535400390625
+  },
+  "CameraNumber": "2",
+  "PhotoNumber": 3817,
+  "Date": "2018-05-20 00:00:00",
+  "species_colonies": [
+    {
+      "SpeciesCode": "LAGU",
+      "SpeciesName": "Laughing Gull",
+      "Date": "2018-05-20 00:00:00",
+      "ColonyID": "Breton Island",
+      "Latitude": "29.4955",
+      "Longitude": "-89.1742",
+      "bird_info": {
+        "bird_thumbnail": "http://commons.wikimedia.org/wiki/Special:FilePath/Laughing_gull_-_natures_pics.jpg?width=300",
+        "bird_wikipage": "http://en.wikipedia.org/wiki/Laughing_gull"
+      }
+    },
+    {
+      "SpeciesCode": "LAGU",
+      "SpeciesName": "Laughing Gull",
+      "Date": "2018-05-20 00:00:00",
+      "ColonyID": "Breton Island",
+      "Latitude": "29.4955",
+      "Longitude": "-89.1742",
+      "bird_info": {
+        "bird_thumbnail": "http://commons.wikimedia.org/wiki/Special:FilePath/Laughing_gull_-_natures_pics.jpg?width=300",
+        "bird_wikipage": "http://en.wikipedia.org/wiki/Laughing_gull"
+      }
+    },
+    {
+      "SpeciesCode": "BRPE",
+      "SpeciesName": "Brown Pelican",
+      "Date": "2018-05-20 00:00:00",
+      "ColonyID": "Breton Island",
+      "Latitude": "29.4955",
+      "Longitude": "-89.1742",
+      "bird_info": {
+        "bird_thumbnail": "http://commons.wikimedia.org/wiki/Special:FilePath/Brown_Pelican21K.jpg?width=300",
+        "bird_wikipage": "http://en.wikipedia.org/wiki/Brown_pelican"
+      }
+    },
+    {
+      "SpeciesCode": "BRPE",
+      "SpeciesName": "Brown Pelican",
+      "Date": "2018-05-20 00:00:00",
+      "ColonyID": "Breton Island",
+      "Latitude": "29.4955",
+      "Longitude": "-89.1742",
+      "bird_info": {
+        "bird_thumbnail": "http://commons.wikimedia.org/wiki/Special:FilePath/Brown_Pelican21K.jpg?width=300",
+        "bird_wikipage": "http://en.wikipedia.org/wiki/Brown_pelican"
+      }
+    },
+    {
+      "SpeciesCode": "ROYT",
+      "SpeciesName": "Royal Tern",
+      "Date": "2018-05-20 00:00:00",
+      "ColonyID": "Breton Island",
+      "Latitude": "29.4955",
+      "Longitude": "-89.1742",
+      "bird_info": {
+        "bird_thumbnail": "http://commons.wikimedia.org/wiki/Special:FilePath/Royal_Tern.jpg?width=300",
+        "bird_wikipage": "http://en.wikipedia.org/wiki/Royal_tern"
+      }
+    },
+    {
+      "SpeciesCode": "ROYT",
+      "SpeciesName": "Royal Tern",
+      "Date": "2018-05-20 00:00:00",
+      "ColonyID": "Breton Island",
+      "Latitude": "29.4955",
+      "Longitude": "-89.1742",
+      "bird_info": {
+        "bird_thumbnail": "http://commons.wikimedia.org/wiki/Special:FilePath/Royal_Tern.jpg?width=300",
+        "bird_wikipage": "http://en.wikipedia.org/wiki/Royal_tern"
+      }
+    }
+  ],
+  "longitude": -89.177635,
+  "latitude": 29.495005,
+  "altitude": 0,
+  "location_from": "kml_point"
 }
