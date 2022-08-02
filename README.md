@@ -9,7 +9,8 @@ Initially, the dataset contains photos taken in 2018 and it will grow with photo
 ## Data formats 
 
 High resolution(5184 x 3456) images are provided in jpg format (compression quality level 98%). A sample image can be found at  [doc/examples/20May2018 Camera2-3817.jpg](doc/examples/20May2018%20Camera2-3817.jpg). 2018 dataset has 26899 images. 
-Metadata will be provided in json format in a schema similar to the example found in [doc/examples/20May2018 Camera2-3817.json](doc/examples/20May2018%20Camera2-3817.json). 
+Metadata will be provided in json format in a schema similar to the example found in [doc/examples/20May2018 Camera2-3817.json](doc/examples/20May2018%20Camera2-3817.json). This schema will probably change to be a geojson [containing the same information](doc/examples/20May2018%20Camera2-3817.geojson). You can download the current version of the [full feature collection file](doc/examples/metadata.geojson.gz). 
+
 Low resolution, png, thumbnails will also be provided.
 
 ![thumbnail](doc/examples/20May2018%20Camera2-3817.png)
