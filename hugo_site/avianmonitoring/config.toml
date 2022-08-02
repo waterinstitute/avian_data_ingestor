@@ -1,0 +1,36 @@
+baseURL = "/"
+uglyurls = true
+languageCode = "en-us"
+title = "Gulfwide Avian Colony Monitoring Survey Photos"
+theme = "kube"
+description = "Colibri Ecological Consulting Inc, as a The Water Insitute of the Gulf subcontractor, under a Coastal Protection and Restoration Authority (CPRA) contract, has taken high-resolution aerial photos in zones that extend from southern Texas to the Big Bend of Florida along the northern coast of the Gulf of Mexico. Photos have been annotated(dotted) with bird nests analysis data (including species, quantity, and date). These photos will be used to assess changes in colonial waterbird populations. Initially, the dataset contains photos taken in 2018 and it will grow with photos being taken in 2021."
+Paginate = 4
+[Params]
+  RSSLink = "/index.xml"
+  author = "The Water Institute" # add your company name
+  github = "cronosnull" # add your github profile name
+  twitter = "theh2oinstitute" # add your twitter profile
+  email = "carizaporras@thewaterinstitute.org"
+
+[[menu.main]]
+    name = "Documentation"
+    weight = -100
+    url = "/docs.html"
+[[menu.main]]
+    name = "Browse files"
+    weight = -200
+    url = "/browse.html"
+[[menu.main]]
+    name = "Faq"
+    weight = -100
+    url = "/docs/faq.html"
+[[menu.main]]
+    name = "visualize"
+    weight = 0
+    url = "/vizualize.html"
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2

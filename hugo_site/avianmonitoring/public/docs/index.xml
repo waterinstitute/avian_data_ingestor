@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Gulfwide Avian Colony Monitoring Survey Photos</title>
+    <link>/docs.html</link>
+    <description>Recent content in Docs on Gulfwide Avian Colony Monitoring Survey Photos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 Jul 2022 00:48:10 -0500</lastBuildDate><atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>/docs/my-new-doc.html</link>
+      <pubDate>Thu, 14 Jul 2022 00:48:10 -0500</pubDate>
+      
+      <guid>/docs/my-new-doc.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FAQ</title>
+      <link>/docs/faq.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/faq.html</guid>
+      <description>Q: Is the Nest category indicative of two birds/nest? A: Yes. Estimating breeding population size, for example, will involve multiplying totals for all combined nest categories by 2.
+Q: In some instances, Nest Totals are greater than Bird Totals. Why is this? A: These instances usually involve having counted Chick Nests Without Adult; these nests get included in the Nest Total but not the Birds Total. This nest category is often used for brown pelican as well as great egret and other waders.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,4 @@
+AuthName "Enter your username and password"
+AuthType Basic
+AuthUserFile /home/avian_data/.htpasswd
+Require valid-user
