@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import glob
 import re
 import pandas as pd
+import numpy as np
 import session_info
 import argparse
 import csv
@@ -37,7 +38,12 @@ def get_fname_from_images(path_to_img_folder, write_to_file=False, path_outfile=
         config = ('-l eng --oem 3 --psm 3')
         text = pytesseract.image_to_string(thresh,config=config)
         if text == '':
-            tesseract_none.append(1)
+            config = ('-l eng --oem 3 --psm 6')
+            text = pytesseract.image_to_string(thresh,config=config)
+            if text == '':
+                tesseract_none.append(1)
+            else:
+                tesseract_none.append(0)    
         else:
             tesseract_none.append(0)    
         orig_fname.append(f)
@@ -49,7 +55,7 @@ def get_fname_from_images(path_to_img_folder, write_to_file=False, path_outfile=
         #pattern = r'\d{2}\w+[-]\w+\.[jt][pi][fg]'
         #pattern = r'\d{2}[A-Za-z]+\w+[-]\w+\.*?[jt][pi][fgt]'
         #pattern = r'\d{2}[A-Za-z]+[\w?~]+[-]*\w+[\.,:]*?[jiot][pif]*[fgt]*'
-        pattern = r'\d{2}[A-Za-z]+[2][0][12][0-9]Cam[\w?~]+[-]*\w+[\.,:]*?[jiot][pif]*[fgt]*'
+        pattern = r'\d{1,2}[A-Za-z]+[2][0][12][0-9]Cam[\w?~]+[-]*\w+[\.,:]*?[jiotJT][pifPT]*[fgtGF]*'
         if re.search(pattern, text):
             text = re.search(pattern, text).group()
             regex_failed.append(0)
@@ -58,42 +64,54 @@ def get_fname_from_images(path_to_img_folder, write_to_file=False, path_outfile=
         regex_cleaned.append(text)
         # post regex
         # 
+        
         num_changes = 0
-        if 'Camera?' in text:
-            text = re.sub('Camera\?', 'Camera2', text)
+        if 'Camera?' or 'Cameraz' in text:
+            text = re.sub('Camera\?|Cameraz', 'Camera2', text)
             num_changes += 1
-        if 'Cameral' or 'Camerat' or 'Camerai' or 'Camnerat' in text:
-            to_match = ['Cameral','Camerat','Camerai','Camnerat']
+        if 'Cameral' or 'Camerat' or 'Camerai' or 'Camnerat' or 'Camera!' in text:
+            to_match = ['Cameral','Camerat','Camerai','Camnerat', 'Camera!']
             text = re.sub('|'.join(to_match), 'Camera1', text)            
             num_changes += 1
         if 'Comere' in text:
             text = re.sub('Comere', 'Camera', text)
             num_changes += 1
-        if not re.search('\.', text):
+        if 'Cardi' or 'Cardt' or 'Cardl' in text:
+            text = re.sub('Cardi|Cardt|Cardl', 'Card1', text)
+        if 'Card?' or 'Cardz' in text:
+            text = re.sub('Card\?|Cardz', 'Card2', text)
+        if re.search('3une|}une', text[0:11]):
+            text = re.sub('3une|}une','June',text[0:11]) + text[11:len(text)]
+        if re.search('thay|Mhay|hay|tay', text[0:11]):
+            text = re.sub('thay|Mhay|hay|tay','May',text[0:11]) + text[11:len(text)]    
+
+        if not re.search('\.', text[len(text)-10:len(text)]):
             #if ',jpg' or ',jp' or ',pg' or ',og' in text:
-            if re.search('[jop][pog]*[g]*',text): 
+            if re.search('[jop][pog]*[g]*',text[len(text)-10:len(text)]): 
                 to_m1 = [',jpg' ,',jp',',pg',',p', ',og','jpg','jp','jog','j', 'og', ',jog', ',ipg']        
-                text = re.sub('|'.join(to_m1), '.jpg', text)
+                text = text[0:len(text)-10] + re.sub('|'.join(to_m1), '.jpg', text[len(text)-10:len(text)])
                 num_changes += 1
-            elif re.search('[ti][if]*[f]*', text):
+            elif re.search('[ti][if]*[f]*', text[len(text)-10:len(text)]):
                 to_m2 = ['tif','ti','if', ',tif', ',if', ',f', ':if', ',tf', 'tf', ',ti']        
-                text = re.sub('|'.join(to_m2), '.tif', text)
+                text = text[0:len(text)-10] + re.sub('|'.join(to_m2), '.tif', text[len(text)-10:len(text)])
                 num_changes += 1
         else:
             #if  '.ipg' or '.jp' or '.j' or '.ip' in text:
-            if re.search('ipg|jp|j|ip|pg|jg', text):
+            if re.search('ipg|jp|j|ip|pg|jg', text[len(text)-10:len(text)]):
             #if re.search('[ij][p]*[g]*', text):
                 to_match_jpg = ['.ipg','.jp','.j','.ip', '.pg', '.jg', '.og']
                 if not re.search('\.jpg',text):
-                    text = re.sub('|'.join(to_match_jpg), '.jpg', text)
+                    text = text[0:len(text)-10] + re.sub('|'.join(to_match_jpg),'.jpg',text[len(text)-10:len(text)])
+                    #text = re.sub('|'.join(to_match_jpg), '.jpg', text)
                     num_changes += 1
-            elif re.search('tf|ti|t|if|i*', text):
+            elif re.search('tf|ti|t|if|i*', text[len(text)-10:len(text)]):
                 #re.search('[ti][if]*[f]*', text):
-                to_match_tif = ['.tf','.if','.ti','.i',':if','.t']
-                if not re.search('\.tif', text):
-                    text = re.sub('|'.join(to_match_tif), '.tif', text)
-                    num_changes += 1               
+                to_match_tif = ['.tf','.if','.ti','.i',':if','.t', '.8f']
+                if not re.search('\.tif', text[len(text)-10:len(text)]):
+                    text = text[0:len(text)-10] + re.sub('|'.join(to_match_tif),'.tif',text[len(text)-10:len(text)])
+                    num_changes += 1                                  
 
+        text = text.replace('\n','').replace('(1/1)','').replace('25%','')
         if num_changes > 0:
             post_regex.append(1)
         else:
@@ -108,8 +126,9 @@ def get_fname_from_images(path_to_img_folder, write_to_file=False, path_outfile=
                           'post_regex_processed':post_regex,
                           'post_regex_out':post_regex_out})
 
-    outdf['ends_with_jpg_tif'] = outdf['post_regex_out'].apply(lambda x: 1 if x.endswith(('.jpg', '.tif')) else 0)
+    outdf['ends_with_jpg_tif'] = outdf['post_regex_out'].apply(lambda x: 1 if x.endswith(('.jpg', '.JPG', '.tif', '.TIF')) else 0)
     outdf['tobe_checked'] = list(map(lambda x,y: 1 if re.sub('\s*?','', x) == y else 0, tesseract_out, regex_cleaned ))
+    outdf['final_tobe_checked'] = np.where(np.logical_and(outdf.ends_with_jpg_tif == 0, outdf.tobe_checked==0), 1, outdf.tobe_checked)
     
     if write_to_file:
         # replace \n with \\n
@@ -120,6 +139,11 @@ def get_fname_from_images(path_to_img_folder, write_to_file=False, path_outfile=
         return outdf
 
 if __name__ == "__main__":
+    """Usage:
+    time python src/screenshots_ocr/screenshots_ocr.py --path_to_tesseract '/usr/bin/tesseract' \
+        --path_to_img_folder /to82sp/'Task 2 2021 Waterbird Colony Photo Analysis' \
+        --path_to_output /z/Projects/AvianAI/to82_2021_screenshots_filenames.csv
+    """
     args_parser = argparse.ArgumentParser(description='Fetch filename from screenshots using Tesseract OCR')
     args_parser.add_argument('--path_to_tesseract', help = 'Path to where Tsseract executable is installed', required=True)
     args_parser.add_argument('--path_to_img_folder', help = 'Path to parent directory where all images are located- JPG files are recursively read from all subdirectories.', required=True)
