@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>GulfAvian Data</title>
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Favicon -->
+  <link rel="icon" href="">
+
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.filebrowser@0.8.4/css/jquery.filebrowser.min.css">
+
+  <link href="https://code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css" rel="stylesheet"/>
+  <style>
+
+    .content {
+      margin-top: 50px;
+    }
+    .disabled {
+        color: currentColor;
+        cursor: not-allowed;
+        opacity: 0.5;
+        text-decoration: none;
+    }
+  </style>
+
+</head>
+<body>
+
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar Left -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+		 <li class="nav-item">
+          <a class="nav-link" href="https://github.com/waterinstitute/avian_data_ingestor">docs</a>
+        </li>
+     </ul>
+      <!-- Navbar Right -->
+      <ul class="navbar-nav">
+	    <li class="nav-item">
+          <a class="nav-link" href="/list_files.html">BROWSE THE BUCKET CONTENT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/HighResolutionImages/2021/index.html" >2021</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/HighResolutionImages/2018/index.html">2018</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="/HighResolutionImages/2018/chandeleur/index.html">Chandeleur 2018</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link disabled" href="/HighResolutionImages/2015/index.html" disabled>2015</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link disabled" href="/HighResolutionImages/2013/index.html" disabled>2013</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="/HighResolutionImages/2011/index.html">2011</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="/HighResolutionImages/2010/index.html">2010</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div id="browser" class="container">
+    </div>
+  </div>
+
+  <!-- jQuery -->
+	<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.filebrowser@0.8.4/js/jquery.filebrowser.min.js"></script>
+
+  <!-- Tether -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap 4 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script type="application/javascript">
+  init_browser = function(data) {
+    console.log(data)
+    var browse = $('#browser').browse({
+        root: '/',
+        separator: '/',
+        contextmenu: true,
+        dir: function(path) {
+            return new Promise(function(resolve, reject) {
+			     console.log(path)
+                 if (path == '/') {
+                     resolve(data[""]);
+                 } else if (path in data) {
+                     resolve(data[path]);
+                 } else {
+                     reject(); // for cases when you type wrong path in address bar
+                 }
+             });
+        },
+        open: function(filename) {
+            window.open(filename)
+        }
+    });
+}
+  $.get("file_listing.json", null,init_browser);
+  </script>
+</body>
+</html>

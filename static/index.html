@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2018 Dataset</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	#map {
+	width: 800px; 
+	height: 600px; 
+	border: 1px solid #ccc;
+}
+
+#progress {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    left: 400px;
+    top: 300px;
+    width: 200px;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -100px;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+#progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #76A6FC;
+    border-radius: 4px;
+}
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+.popup_div, .popup_div>img{
+	width: 300px;
+}
+label[for="chk_birds"] {
+    background: #A5D6A7;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+#chk_birds:checked ~ label[for="chk_birds"]{
+	content:"Show only images with associated birds (selected)";
+}
+#chk_birds:unchecked ~ label[for="chk_birds"]::after{
+	content:"Show only images with associated birds (unchecked)";
+}
+img.huechange { filter: hue-rotate(120deg); }
+</style>
+	</style>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+	<script src="https://unpkg.com/leaflet.markercluster@1.4.1//dist/leaflet.markercluster-src.js"></script>
+</head>
+<body>
+	<div class="header"><input type="checkbox" id="chk_birds" name="chk_birds" checked onchange="createMarkers(prev_data)"/><label for="chk_birds"> show only images with associated birds</label><br></div>
+	<div id="map"></div>
+	<span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds
+	</span>
+	<script type="text/javascript">
+var images_base = "."
+var metadata_summary = "./metadata/summary.json"
+var thumbnails_base = "./thumbnails"
+var tiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 18,
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    }),
+    latlng = L.latLng(28.69, -87.44);
+
+var map = L.map('map', {
+    center: latlng,
+    zoom: 5,
+    layers: [tiles]
+});
+    var markers = L.markerClusterGroup();
+	var prev_data =[]
+var createMarkers = function(addressPoints) {
+markers.clearLayers()
+	var greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+
+    for (var i = 0; i < addressPoints.length; i++) {
+        species_div = ""
+        dejavu = []
+        var a = addressPoints[i];
+        if (a.species_colonies) {
+
+            for (const s of a.species_colonies) {
+                if (dejavu.includes(s.SpeciesName)) {
+                    continue
+                }
+                species_div += "" + `<span class="specie"><small> <a href="${s.bird_info?.bird_wikipage}">${s.SpeciesName}<img width="50" src="${s.bird_info?.bird_thumbnail}"/></a> </small></span><br/>`
+                dejavu.push(s.SpeciesName);
+            }
+        }
+        var title = `<div class="popup_div"><a title=' ${a.name}' href=" ${a.name}">Download ${a.name}, full resolution</a>
+						<img src='${thumbnails_base}/${a.thumbnail}' title='thumbnail'/>
+						<div class="species">${species_div}</div>
+						</div>`;
+		options = {
+            title: title
+        };
+        
+
+       
+       
+        if (dejavu.length > 0) {
+            options["icon"] = greenIcon
+        }else if (document.getElementById("chk_birds").checked){
+			continue;
+		}
+		var marker = L.marker(new L.LatLng(a.point[1], a.point[0]), options)
+		marker.bindPopup(title);
+		markers.addLayer(marker);
+    }
+    map.addLayer(markers);
+	prev_data = addressPoints
+}
+load_all = function (){
+fetch(metadata_summary, {
+        headers: {
+            'Accept': 'application/json'
+        }
+
+    })
+    .then(response => response.json())
+    .then(data => createMarkers(data));
+  }
+  
+ load_all()
+	
+	</script>
+</body>
+</html>

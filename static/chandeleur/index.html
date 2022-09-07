@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Chandelier 2018 Dataset</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/fc-4.0.2/fh-3.2.2/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/fc-4.0.2/fh-3.2.2/datatables.min.js"></script>
+
+	<script type="text/javascript" charset="utf8" src="./assets/birds.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      #map {
+        width: 800px;
+        height: 600px;
+        border: 1px solid #ccc;
+      }
+
+      #progress {
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        left: 400px;
+        top: 300px;
+        width: 200px;
+        height: 20px;
+        margin-top: -20px;
+        margin-left: -100px;
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 4px;
+        padding: 2px;
+      }
+
+      #progress-bar {
+        width: 0;
+        height: 100%;
+        background-color: #76A6FC;
+        border-radius: 4px;
+      }
+
+      .isDisabled {
+        color: currentColor;
+        cursor: not-allowed;
+        opacity: 0.5;
+        text-decoration: none;
+      }
+
+      .popup_div{
+		width:400px;
+	  }
+	  
+      .popup_div>img {
+        width: 150px;
+      }
+
+      label[for="chk_birds"] {
+        background: #A5D6A7;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+      }
+
+      #chk_birds:checked~label[for="chk_birds"] {
+        content: "Show only images with associated birds (selected)";
+      }
+
+      #chk_birds:unchecked~label[for="chk_birds"]::after {
+        content: "Show only images with associated birds (unchecked)";
+      }
+
+      img.huechange {
+        filter: hue-rotate(120deg);
+      }
+      #table> th, td { white-space: nowrap; }
+    </style>
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1//dist/leaflet.markercluster-src.js"></script>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>Chandeleur 2018</h1>
+    </div>
+    <main class="container-fluid">
+    <div id="map"></div>
+    <span>Mouse over a cluster to see the bounds of its children and click a cluster to zoom to those bounds
+	</span>
+    <div>
+      <table id="table" class="table table-striped" style="width:100%"></table>
+    </div>
+  </main>
+  <script type="text/javascript" src='assets/main.js'></script>
+
+  </body>
+
+</html>

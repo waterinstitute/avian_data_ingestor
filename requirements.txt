@@ -1,0 +1,6 @@
+boto3
+pytest
+certbot
+certbot-s3front
+click
+rsa
